@@ -188,42 +188,42 @@ const experiencePanels = [
     tag: "Learning",
     title: "Concept-first classrooms",
     text: "Classes of 24 with daily doubt clinics, exit tickets and personal learning plans for every child.",
-    image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=80",
+    image: "/images/exp-classrooms.webp",
     imageAlt: "Students learning together in a bright classroom",
   },
   {
     tag: "Innovation",
     title: "Robotics, AI and design",
     text: "Eight studios where middle and senior students prototype, code and pitch real projects.",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=900&q=80",
+    image: "https://th.bing.com/th/id/OIP.ohozYj30KNyms_NJYHM0PQHaCW?w=331&h=111&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
     imageAlt: "Student working on a technology project",
   },
   {
     tag: "Creativity",
     title: "Music, art and theatre",
     text: "Choir, orchestra, dance and stage productions with two showcase evenings every term.",
-    image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=80",
+    image: "/images/exp-creativity.webp",
     imageAlt: "Colorful art materials arranged for a creative project",
   },
   {
     tag: "Sport",
     title: "Coaching in nine disciplines",
     text: "Football, cricket, basketball, swimming and athletics led by professional coaches.",
-    image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=900&q=80",
+    image: "https://th.bing.com/th/id/OIP.wiSbyZG3SGpMhjE-lo6q7QHaE8?w=300&h=200&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
     imageAlt: "Athlete running on a track",
   },
   {
     tag: "Wellbeing",
     title: "Counselling and mentoring",
     text: "Dedicated counsellors, learning support and a mentor teacher attached to every child.",
-    image: "https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=900&q=80",
+    image: "https://tse4.mm.bing.net/th/id/OIP.y_LXGbThn6aK37xXmzmtJgHaD4?r=0&pid=ImgDet&w=208&h=109&c=7&dpr=1.3&o=7&rm=3",
     imageAlt: "Students spending time together outdoors",
   },
   {
     tag: "Community",
     title: "Service and leadership",
     text: "House system, student council and city-wide community service drives led by students.",
-    image: "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=900&q=80",
+    image: "https://th.bing.com/th/id/OIP.5M_OvNFyvJN5Z6Iy9ixUIwHaEK?w=314&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
     imageAlt: "Volunteers working together on a community project",
   },
 ];
@@ -287,7 +287,18 @@ export default function Home() {
   return (
     <div className="overflow-x-clip">
       <section className="relative overflow-hidden bg-brand-950 text-white">
-        <div className="hero-fade absolute inset-0 bg-gradient-to-br from-brand-800 via-brand-950 to-brand-900" />
+        <img
+          src="https://i.pinimg.com/originals/38/3a/9e/383a9e38e30a672f571bb84f71a12e4a.jpg"
+          alt=""
+          aria-hidden="true"
+          fetchPriority="high"
+          referrerPolicy="no-referrer"
+          onError={(event) => {
+            event.currentTarget.style.display = "none";
+          }}
+          className="hero-bg absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="hero-fade absolute inset-0 bg-gradient-to-br from-brand-950 via-brand-950/85 to-brand-900/70" />
         <div className="hero-grid pointer-events-none absolute inset-0 opacity-40" />
         <div className="hero-float absolute -right-24 -top-24 size-96 rounded-full bg-gold-500/20 blur-3xl" />
         <div className="hero-float absolute -bottom-32 -left-16 size-96 rounded-full bg-lagoon-500/20 blur-3xl" style={{ animationDelay: "1.8s" }} />
@@ -410,7 +421,7 @@ export default function Home() {
                   delay={index * 90}
                   direction="right"
                   lift
-                  className="relative flex min-h-[48vh] flex-col justify-end overflow-hidden rounded-3xl p-8 shadow-[0_24px_50px_-24px_rgba(11,21,38,0.55)]"
+                  className="relative flex min-h-[48vh] flex-col justify-end overflow-hidden rounded-3xl p-8 shadow-[0_24px_50px_-24px_rgba(11,21,38,0.55)] group"
                 >
                 <div className={`absolute inset-0 ${panel.tone}`} />
                 <img
@@ -421,7 +432,7 @@ export default function Home() {
                   onError={(event) => {
                     event.currentTarget.style.display = "none";
                   }}
-                  className="absolute inset-0 h-full w-full object-cover"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-brand-950/85 via-brand-950/25 to-transparent" />
                 <div className="relative">
@@ -540,7 +551,7 @@ export default function Home() {
                       <span className="font-heading text-3xl font-semibold text-brand-100">{`0${index + 1}`}</span>
                     </div>
                     <h3 className="mt-3 font-heading text-xl font-semibold text-brand-900">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+                    <p className="stage-desc mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
                     <div className="mt-4 flex flex-wrap gap-2">
                       {item.focus.map((focus) => (
                         <span key={focus} className="rounded-full bg-paper-100 px-3 py-1 text-xs font-medium text-brand-800">
@@ -721,7 +732,7 @@ export default function Home() {
                 <p className="mt-2 text-sm text-muted-foreground">{item.excerpt}</p>
                 <span className="mt-auto inline-flex items-center gap-1 pt-4 text-sm font-semibold text-brand-800">
                   Read story
-                  <ArrowRight className="size-4" />
+                  <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
               </Link>
             </Animated>

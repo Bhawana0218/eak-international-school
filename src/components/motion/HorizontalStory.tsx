@@ -153,7 +153,7 @@ export default function HorizontalStory({ kicker, title, intro, panels }: Horizo
               {panels.map((panel, index) => (
                 <article
                   key={panel.title}
-                  className="flex w-[78vw] shrink-0 snap-start flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-7 sm:w-[60vw] lg:w-[24rem]"
+                  className="group flex w-[78vw] shrink-0 snap-start flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-7 sm:w-[60vw] lg:w-[24rem]"
                 >
                   <div>
                     <span className="text-xs font-semibold uppercase tracking-[0.18em] text-gold-400">
@@ -172,10 +172,11 @@ export default function HorizontalStory({ kicker, title, intro, panels }: Horizo
                       alt={panel.imageAlt}
                       loading="lazy"
                       decoding="async"
+                      referrerPolicy="no-referrer"
                       onError={(event) => {
                         event.currentTarget.style.display = "none";
                       }}
-                      className="absolute inset-0 h-full w-full object-cover"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                     />
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-brand-950/20 to-transparent" />
                   </div>

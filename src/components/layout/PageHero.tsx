@@ -17,6 +17,10 @@ export default function PageHero({ kicker, title, image, children }: PageHeroPro
             alt=""
             aria-hidden="true"
             fetchPriority="high"
+            referrerPolicy="no-referrer"
+            onError={(event) => {
+              event.currentTarget.style.display = "none";
+            }}
             className="absolute inset-0 -z-10 h-full w-full object-cover"
           />
           <div className="absolute inset-0 -z-10 bg-gradient-to-r from-brand-950/85 via-brand-950/70 to-brand-950/45" />
