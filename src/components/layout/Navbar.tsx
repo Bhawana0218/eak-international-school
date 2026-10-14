@@ -8,9 +8,8 @@ const links = [
   { to: "/about", label: "About" },
   { to: "/academics", label: "Academics" },
   { to: "/admissions", label: "Admissions" },
-  { to: "/faculty", label: "Faculty" },
-  { to: "/student-life", label: "Student Life" },
-  { to: "/news", label: "News" },
+  { to: "/facilities", label: "Facilities" },
+  { to: "/news", label: "News & Events" },
   { to: "/contact", label: "Contact" },
 ];
 

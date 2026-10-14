@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
 
 const quickLinks = [
   { to: "/about", label: "About Us" },
+  { to: "/academics", label: "Academics" },
   { to: "/admissions", label: "Admissions" },
-  { to: "/faculty", label: "Faculty" },
-  { to: "/student-life", label: "Student Life" },
+  { to: "/facilities", label: "Facilities" },
   { to: "/news", label: "News & Events" },
   { to: "/contact", label: "Contact" },
 ];
@@ -129,6 +129,10 @@ export default function Footer() {
             <li className="flex gap-3">
               <Mail className="mt-0.5 size-4 shrink-0 text-gold-500" />
               <span>admissions@eakinternational.edu</span>
+            </li>
+            <li className="flex gap-3">
+              <Clock className="mt-0.5 size-4 shrink-0 text-gold-500" />
+              <span>Mon – Sat, 8:00 AM – 4:30 PM</span>
             </li>
           </ul>
         </div>

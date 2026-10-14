@@ -8,6 +8,7 @@ const Home = lazy(() => import("@/pages/Home"));
 const About = lazy(() => import("@/pages/About"));
 const Academics = lazy(() => import("@/pages/Academics"));
 const Admissions = lazy(() => import("@/pages/Admissions"));
+const Facilities = lazy(() => import("@/pages/Facilities"));
 const Faculty = lazy(() => import("@/pages/Faculty"));
 const StudentLife = lazy(() => import("@/pages/StudentLife"));
 const News = lazy(() => import("@/pages/News"));
@@ -17,11 +18,9 @@ const NotFound = lazy(() => import("@/pages/NotFound"));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
-
   return null;
 }
 
@@ -37,6 +36,7 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/academics" element={<Academics />} />
             <Route path="/admissions" element={<Admissions />} />
+            <Route path="/facilities" element={<Facilities />} />
             <Route path="/faculty" element={<Faculty />} />
             <Route path="/student-life" element={<StudentLife />} />
             <Route path="/news" element={<News />} />

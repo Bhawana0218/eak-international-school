@@ -1,0 +1,312 @@
+.reveal {
+  opacity: 0;
+  transform: translate3d(var(--reveal-x, 0px), var(--reveal-y, 26px), 0);
+  transition:
+    opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.reveal-lift {
+  transition:
+    opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 700ms cubic-bezier(0.16, 1, 0.3, 1),
+    scale 320ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms), var(--reveal-delay, 0ms), 0ms, 0ms;
+}
+
+.reveal-lift:hover {
+  scale: 1.015;
+  box-shadow: 0 26px 50px -28px rgba(11, 21, 38, 0.5);
+}
+
+.reveal-media {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1000ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal-media.is-visible {
+  clip-path: inset(0 0 0 0);
+}
+
+.reveal-media .media-layer {
+  transform: scale(1.09);
+  transition: transform 1300ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal-media.is-visible .media-layer {
+  transform: scale(1);
+}
+
+/* ————— Masked text reveal (Wix-style staged headlines) ————— */
+.reveal-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.09em;
+  margin-bottom: -0.09em;
+}
+
+.reveal-mask-inner {
+  display: block;
+  transform: translateY(112%);
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: transform;
+}
+
+.reveal-mask.is-visible .reveal-mask-inner {
+  transform: translateY(0);
+}
+
+.lift {
+  transition:
+    scale 320ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lift:hover {
+  scale: 1.015;
+  box-shadow: 0 26px 50px -28px rgba(11, 21, 38, 0.5);
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes hero-pop {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0) scale(0.965);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes hero-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -16px, 0);
+  }
+}
+
+@keyframes hero-title-reveal {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.55em, 0);
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    clip-path: inset(0);
+  }
+}
+
+@keyframes hero-photo-reveal {
+  from {
+    opacity: 0;
+    clip-path: inset(8% 8% 92% 8% round 1.5rem);
+    transform: translate3d(0, 24px, 0) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 round 1.5rem);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes hero-photo-drift {
+  0%,
+  100% {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.07) translate3d(-0.5%, -0.5%, 0);
+  }
+}
+
+@keyframes hero-orbit {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-8deg);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0) rotate(8deg);
+  }
+}
+
+@keyframes panel-swap {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.hero-rise {
+  opacity: 0;
+  animation: hero-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-pop {
+  opacity: 0;
+  animation: hero-pop 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-fade {
+  animation: hero-fade 1200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-float {
+  animation: hero-float 10s ease-in-out 1.2s infinite;
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-position: center center;
+  background-size: 64px 64px;
+  mask-image: linear-gradient(to bottom, black, transparent 90%);
+}
+
+.hero-title-line {
+  opacity: 0;
+  animation: hero-title-reveal 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-title-accent {
+  color: #f9d27a;
+  text-shadow: 0 8px 34px rgba(245, 184, 65, 0.16);
+}
+
+.hero-image-outline {
+  animation: hero-fade 1200ms ease 500ms both;
+}
+
+.hero-image-reveal {
+  animation: hero-photo-reveal 1200ms cubic-bezier(0.16, 1, 0.3, 1) 180ms both;
+}
+
+.hero-image-drift {
+  animation: hero-photo-drift 22s ease-in-out 1.5s infinite;
+}
+
+.hero-orbit {
+  animation: hero-orbit 6s ease-in-out 1.2s infinite;
+}
+
+.panel-swap {
+  animation: panel-swap 440ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ————— Marquee ticker (decorative, duplicates on-page copy) ————— */
+.marquee {
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 32s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .reveal-media,
+  .reveal-media.is-visible {
+    clip-path: none !important;
+    transition: none !important;
+  }
+
+  .reveal-media .media-layer {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .reveal-mask-inner {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .reveal-lift:hover,
+  .lift:hover {
+    scale: none !important;
+    box-shadow: none !important;
+  }
+
+  .hero-rise,
+  .hero-pop,
+  .hero-fade,
+  .hero-float,
+  .hero-title-line,
+  .hero-image-outline,
+  .hero-image-reveal,
+  .hero-image-drift,
+  .hero-orbit,
+  .panel-swap {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+
+  .marquee-track {
+    animation: none !important;
+    flex-wrap: wrap;
+    width: auto;
+    justify-content: center;
+  }
+
+  .marquee-chunk-dup {
+    display: none !important;
+  }
+}
