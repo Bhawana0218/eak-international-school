@@ -345,9 +345,7 @@ export default function Home() {
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-brand-950/30 via-transparent to-white/10" />
               </div>
-              <span className="hero-orbit absolute -right-5 top-1/4 grid size-14 place-items-center rounded-full border border-gold-300/50 bg-brand-900/75 text-gold-300 shadow-lg backdrop-blur">
-                <Sparkles className="size-5" />
-              </span>
+             
             </div>
             <div className="relative z-10 -mt-7 grid grid-cols-2 gap-3 px-2 sm:gap-4 sm:px-4">
               {heroCards.map((card, index) => (
