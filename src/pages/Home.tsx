@@ -19,7 +19,7 @@ import {
 import Animated from "@/components/motion/Animated";
 import HorizontalStory from "@/components/motion/HorizontalStory";
 import Stat from "@/components/motion/Stat";
-import { useMediaQuery, useStackShrink } from "@/components/motion/hooks";
+import { useMediaQuery, useHeroParallax, useStackShrink } from "@/components/motion/hooks";
 import { events, news, notices, stats, testimonials } from "@/data/school";
 import "./home.css";
 
@@ -188,7 +188,7 @@ const experiencePanels = [
     tag: "Learning",
     title: "Concept-first classrooms",
     text: "Classes of 24 with daily doubt clinics, exit tickets and personal learning plans for every child.",
-    image: "/images/exp-classrooms.webp",
+    image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Students learning together in a bright classroom",
   },
   {
@@ -202,7 +202,7 @@ const experiencePanels = [
     tag: "Creativity",
     title: "Music, art and theatre",
     text: "Choir, orchestra, dance and stage productions with two showcase evenings every term.",
-    image: "/images/exp-creativity.webp",
+    image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Colorful art materials arranged for a creative project",
   },
   {
@@ -260,6 +260,7 @@ function MarqueeStrip() {
 
 export default function Home() {
   const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const heroRef = useHeroParallax<HTMLElement>();
   const stackRef = useStackShrink<HTMLDivElement>();
   const [activeStage, setActiveStage] = useState(0);
   const stageRefs = useRef<(HTMLLIElement | null)[]>([]);
@@ -286,7 +287,7 @@ export default function Home() {
 
   return (
     <div className="overflow-x-clip">
-      <section className="relative overflow-hidden bg-brand-950 text-white">
+      <section ref={heroRef} className="relative overflow-hidden bg-brand-950 text-white">
         <img
           src="https://i.pinimg.com/originals/38/3a/9e/383a9e38e30a672f571bb84f71a12e4a.jpg"
           alt=""
@@ -296,7 +297,7 @@ export default function Home() {
           onError={(event) => {
             event.currentTarget.style.display = "none";
           }}
-          className="hero-bg absolute inset-0 h-full w-full object-cover"
+          className="hero-bg hero-fade absolute inset-0 h-full w-full object-cover"
         />
         <div className="hero-fade absolute inset-0 bg-gradient-to-br from-brand-950 via-brand-950/85 to-brand-900/70" />
         <div className="hero-grid pointer-events-none absolute inset-0 opacity-40" />
@@ -373,15 +374,19 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <a href="#discover" className="scroll-hint hero-fade" style={{ animationDelay: "900ms" }} aria-label="Scroll to explore the school">
+          <span>Scroll to explore</span>
+          <span className="scroll-hint-line" aria-hidden="true" />
+        </a>
       </section>
 
       <MarqueeStrip />
 
-      <section className="border-y border-border bg-paper-100">
+      <section id="discover" className="border-y border-border bg-paper-100">
         <div className="mx-auto grid max-w-7xl gap-14 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-24">
           <div className="lg:sticky lg:top-24 lg:self-start">
             <Animated direction="left">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold-600">About the school</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold-600">About the school<span className="gold-draw" aria-hidden="true" /></p>
               <h2 className="mt-3 font-heading text-3xl font-semibold tracking-tight text-brand-900 sm:text-4xl">
                 <Animated variant="mask" delay={150}>Rooted in values since 1998</Animated>
               </h2>
@@ -460,7 +465,7 @@ export default function Home() {
 
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
         <Animated direction="left" className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold-600">Why choose us</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold-600">Why choose us<span className="gold-draw" aria-hidden="true" /></p>
           <h2 className="mt-3 font-heading text-3xl font-semibold tracking-tight text-brand-900 sm:text-4xl">
             <Animated variant="mask" delay={150}>A school designed around your child</Animated>
           </h2>
@@ -485,7 +490,7 @@ export default function Home() {
       <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8 lg:pb-24">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <Animated direction="left" className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold-600">Academic excellence</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold-600">Academic excellence<span className="gold-draw" aria-hidden="true" /></p>
             <h2 className="mt-3 font-heading text-3xl font-semibold tracking-tight text-brand-900 sm:text-4xl">
               <Animated variant="mask" delay={150}>One journey, four confident stages</Animated>
             </h2>
@@ -578,7 +583,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <Animated direction="left" className="max-w-2xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold-400">School facilities</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold-400">School facilities<span className="gold-draw" aria-hidden="true" /></p>
               <h2 className="mt-3 font-heading text-3xl font-semibold tracking-tight text-white sm:text-4xl">
                 <Animated variant="mask" delay={150}>A campus built for exploration</Animated>
               </h2>
@@ -629,7 +634,7 @@ export default function Home() {
           </Animated>
           <div>
             <Animated direction="left">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold-600">Principal's message</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold-600">Principal's message<span className="gold-draw" aria-hidden="true" /></p>
               <Quote className="mt-4 size-7 text-gold-500" />
               <blockquote className="mt-3 font-heading text-2xl font-medium leading-snug text-brand-900">
                 Every child arrives with a question. Our work is to protect that question,
@@ -701,7 +706,7 @@ export default function Home() {
 
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
         <Animated direction="left" className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold-600">Testimonials</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold-600">Testimonials<span className="gold-draw" aria-hidden="true" /></p>
           <h2 className="mt-3 font-heading text-3xl font-semibold tracking-tight text-brand-900 sm:text-4xl">
             <Animated variant="mask" delay={150}>Loved by parents, remembered by alumni</Animated>
           </h2>

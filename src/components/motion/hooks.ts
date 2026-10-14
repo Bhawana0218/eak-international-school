@@ -23,6 +23,64 @@ export function usePrefersReducedMotion() {
 }
 
 /**
+ * Cinematic hero parallax: as the hero scrolls out of view, its background
+ * image drifts down slightly and scales up, handing off to the next section.
+ * Writes directly to element styles (no React re-renders), skips reduced
+ * motion, and cleans up on unmount.
+ */
+export function useHeroParallax<T extends HTMLElement>() {
+  const ref = useRef<T | null>(null);
+
+  useEffect(() => {
+    const root = ref.current;
+    if (!root || typeof window === "undefined") return;
+    const img = root.querySelector<HTMLElement>(".hero-bg");
+    if (!img) return;
+    const mqReduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let raf = 0;
+    let queued = false;
+
+    const render = () => {
+      queued = false;
+      if (mqReduced.matches) {
+        img.style.transform = "";
+        return;
+      }
+      const rect = root.getBoundingClientRect();
+      const height = Math.max(rect.height, 1);
+      const progress = Math.min(Math.max(-rect.top / height, 0), 1);
+      img.style.transform = `translate3d(0, ${(progress * 18).toFixed(2)}%, 0) scale(${(1.02 + progress * 0.1).toFixed(4)})`;
+    };
+
+    const request = () => {
+      if (queued) return;
+      queued = true;
+      raf = requestAnimationFrame(render);
+    };
+
+    const onChange = () => {
+      if (mqReduced.matches) img.style.transform = "";
+      else request();
+    };
+
+    request();
+    window.addEventListener("scroll", request, { passive: true });
+    window.addEventListener("resize", request);
+    mqReduced.addEventListener("change", onChange);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", request);
+      window.removeEventListener("resize", request);
+      mqReduced.removeEventListener("change", onChange);
+      img.style.transform = "";
+    };
+  }, []);
+
+  return ref;
+}
+
+/**
  * Scroll-linked shrink for sticky-stacked cards (Wix-style stacked cards).
  * While an earlier card is pinned and the next card scrolls over it, the
  * earlier card scales down slightly for a layered storytelling feel.

@@ -198,17 +198,70 @@
   animation: hero-float 10s ease-in-out 1.2s infinite;
 }
 
-@keyframes hero-bg-zoom {
-  from {
-    transform: scale(1);
-  }
+.hero-bg {
+  will-change: transform;
+  transform: scale(1.02);
+}
+
+/* ————— Cinematic hero: scroll cue ————— */
+
+.scroll-hint {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  transform: translateX(-50%);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(219, 229, 242, 0.75);
+}
+
+.scroll-hint-line {
+  position: relative;
+  width: 1px;
+  height: 3.5rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.scroll-hint-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -40%;
+  width: 100%;
+  height: 40%;
+  background: #f5b841;
+  animation: scroll-hint-drop 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes scroll-hint-drop {
   to {
-    transform: scale(1.08);
+    top: 110%;
   }
 }
 
-.hero-bg {
-  animation: hero-bg-zoom 26s ease-in-out infinite alternate;
+/* ————— Gold line-draw on section labels ————— */
+.gold-draw {
+  display: block;
+  width: 3rem;
+  height: 2px;
+  margin-top: 0.65rem;
+  border-radius: 9999px;
+  background: #f5b841;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s;
+}
+
+.is-visible .gold-draw {
+  transform: scaleX(1);
 }
 
 .hero-grid {
@@ -316,6 +369,15 @@
     opacity: 1 !important;
     transform: none !important;
     clip-path: none !important;
+  }
+
+  .scroll-hint-line::after {
+    animation: none !important;
+  }
+
+  .gold-draw {
+    transform: scaleX(1) !important;
+    transition: none !important;
   }
 
   .marquee-track {
